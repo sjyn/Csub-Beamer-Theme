@@ -2,12 +2,20 @@
 
 \input{color_defs.tex}
 
+\tikzset{
+  path image/.style={
+    path picture={
+      \node at (path picture bounding box.center) {
+        \includegraphics[height=1.8cm,width=1.8cm]{csu_logo.png}};}}
+}
+
 % define the background of slides
 \setbeamertemplate{background}{
     \begin{tikzpicture}
         \useasboundingbox (0,0) rectangle(\the\paperwidth,\the\paperheight);
         \fill[color=white] (0,2) rectangle (\the\paperwidth,\the\paperheight);
         \fill[color=theme_gold] (0,0) rectangle(2.95,1.9);
+        \draw[path image,theme_gold] (0,0) rectangle(2.95,1.9);
         \fill[color=theme_green] (3.05,0) rectangle(\the\paperwidth,1.9);
         \ifnum\thepage>1\relax%
         \fill[white,opacity=1] (0,0) rectangle(\the\paperwidth,\the\paperheight);
@@ -22,15 +30,16 @@
     \begin{beamercolorbox}[wd=12cm,leftskip=3cm,sep=8pt,#1]{title page header}
         \usebeamerfont{title}\inserttitle\par%
     \end{beamercolorbox}%
-    \vskip0.75cm%
-    \begin{beamercolorbox}[wd=12cm,leftskip=3cm,#1]{author}
+    \vfill
+    \begin{beamercolorbox}[wd=9cm,leftskip=3cm,#1]{author}
         \usebeamerfont{author}\insertauthor%
-    \end{beamercolorbox}
-    \vskip0.2cm%
-    \begin{beamercolorbox}[wd=12cm,leftskip=3cm,#1]{date}
+        \vskip0.2cm
         \usebeamerfont{author}\insertdate%
     \end{beamercolorbox}
-    \vfill
+    % \vskip0.2cm%
+    % \begin{beamercolorbox}[wd=9cm,leftskip=3cm,#1]{date}
+    %     \usebeamerfont{author}\insertdate%
+    % \end{beamercolorbox}
 }
 
 \mode<all>
